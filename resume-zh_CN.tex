@@ -11,11 +11,13 @@
 \usepackage{cite}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{graphicx}
+\usepackage{calc}
 
 \newcommand{\schooltag}[1]{%
   \begingroup
-  \setlength{\fboxsep}{0.45em}%
-  \colorbox{black!5}{\textcolor{blue!70!black}{\sffamily\small #1}}%
+  \setlength{\fboxsep}{3pt}%
+  \setlength{\fboxrule}{0pt}%
+  \makebox[30pt][c]{\fcolorbox{cyan!10}{cyan!10}{\makebox[24pt][c]{\textcolor{cyan!80}{\sffamily\tiny #1}}}}\hspace{4pt}%
   \endgroup
 }
 
@@ -29,55 +31,46 @@
 
 %左上角放置学校 logo
 \noindent\makebox[0pt][l]{%
-  \raisebox{0pt}[0pt][0pt]{%
-    \includegraphics[width=0.3\textwidth]{hit-logo.png}%
+  \raisebox{-0.4\height}[0pt][0pt]{%
+    \includegraphics[width=0.28\textwidth]{hit-logo.png}%
   }%
 }%
 
-
 % 右上角放置照片
-\noindent\hfill\raisebox{-0.5\height}[0pt][0pt]{%
-  \includegraphics[width=1in]{resume/freecompress-证件照（蓝）.jpg}% 照片宽度设为 1 英寸
-}\par\vspace{-1.2em}
+\noindent\hfill\raisebox{-0.6\height}[0pt][0pt]{%
+  \includegraphics[width=0.95in]{resume/freecompress-证件照（蓝）.jpg}%
+}\par\vspace{-1.4em}
 
 \name{侯金科}
 
 \basicInfo{
   \phone{187-3619-1305}｜
-  \email{2901779563@qq.com} 
-  
-}
+  \email{2901779563@qq.com}
+}\vspace{-0.3em}
  
-\section{\faGraduationCap\  教育背景}
-\datedsubsection{\textbf{哈尔滨工业大学} -电子信息\schooltag{985}\schooltag{211}\schooltag{双一流}}{2025 -- 至今}
-% \textit{在读硕士研究生}\ 电子信息
-\datedsubsection{\textbf{郑州大学} -物联网工程    \schooltag{211}\schooltag{双一流}}{2021 -- 2025}
-\textit{英语：CET-6}\quad  \textit{GPA：3.63/4.00}\quad
-\textit{专业排名: 24/143}
-% \textit{学士}\ 通信工程
+\section{\faGraduationCap\ 教育背景}
+\datedsubsection{\textbf{哈尔滨工业大学} \quad 电子信息 \schooltag{985}\schooltag{211}\schooltag{双一流}}{2025 -- 至今}
+\datedsubsection{\textbf{郑州大学} \quad 物联网工程 \schooltag{211}\schooltag{双一流}}{2021 -- 2025}
+\textit{英语：CET-6}\quad\textit{GPA：3.63/4.00}\quad\textit{专业排名: 24/143}
 
 \section{\faUsers\ 实习/项目经历}
 \datedsubsection{\textbf{MiniMind 大模型训练与推理实践}}{2024 -- 至今}
 \role{Python, PyTorch, Transformer, LoRA, 推理优化}{个人项目}
-\begin{onehalfspacing}
 \begin{itemize}
   \item 基于 MiniMind 跑通从数据预处理、预训练/指令微调到推理部署的完整链路，形成可复用训练脚本与实验记录。
   \item 在项目中实践 LoRA/全量微调与超参数对齐，围绕损失曲线、生成质量和稳定性进行对比，沉淀模型调参与问题定位方法。
   \item 针对推理阶段进行性能优化（批处理、缓存与显存占用控制），提升本地实验效率，支撑多轮实验快速迭代。
   \item 结合业务场景设计 Prompt 与评测样例，验证模型在问答、摘要、信息抽取等任务上的可用性，贴合 AI 技术应用岗落地需求。
 \end{itemize}
-\end{onehalfspacing}
 
 \datedsubsection{\textbf{Claude Code Agent 应用开发实践}}{2025 -- 至今}
 \role{Agent, Function Calling, RAG, Prompt Engineering}{个人项目}
-\begin{onehalfspacing}
 \begin{itemize}
   \item 复现并搭建 Agent 应用核心链路（任务拆解、工具调用、上下文管理、多轮对话），支持面向真实需求的端到端任务执行。
   \item 基于文档检索与知识注入实现 RAG 能力，提升问答准确性与可解释性，并在不同提示词模板下对输出质量进行对比。
   \item 围绕可用性与稳定性建立评测样例（正确性、完整性、格式约束、响应时延），形成可复用的应用评测流程。
   \item 关注 AI 应用工程化落地，从需求定义、Prompt 设计、链路调试到结果验收完成闭环，匹配 AI 应用工程师岗位能力要求。
 \end{itemize}
-\end{onehalfspacing}
 
 % Reference Test
 %\datedsubsection{\textbf{Paper Title\cite{zaharia2012resilient}}}{May. 2015}
@@ -87,12 +80,11 @@
 %\end{itemize}
 
 \section{\faCogs\ IT 技能}
-% increase linespacing [parsep=0.5ex]
-\begin{itemize}[parsep=0.5ex]
-  \item 编程语言: Python, C++, Java（具备工程编码与调试能力）
-  \item AI 技术栈: PyTorch, Transformer, LoRA/PEFT, RAG, Agent, Prompt Engineering
-  \item 工程与部署: Linux, Git, Conda, API 集成与服务化部署（FastAPI 基础）
-  \item 模型应用: 文本生成/问答/信息抽取场景实践，具备评测与效果优化意识
+\begin{itemize}[parsep=0.3ex, leftmargin=*]
+  \item \textbf{编程语言：}Python, C++, Java（具备工程编码与调试能力）
+  \item \textbf{AI 技术栈：}PyTorch, Transformer, LoRA/PEFT, RAG, Agent, Prompt Engineering
+  \item \textbf{工程与部署：}Linux, Git, Conda, API 集成与服务化部署（FastAPI 基础）
+  \item \textbf{模型应用：}文本生成/问答/信息抽取场景实践，具备评测与效果优化意识
 \end{itemize}
 
 \section{\faHeartO\ 获奖情况}
