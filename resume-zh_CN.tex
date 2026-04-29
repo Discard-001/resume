@@ -12,13 +12,21 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{graphicx}
 \usepackage{calc}
+\usepackage[most]{tcolorbox}
 
 \newcommand{\schooltag}[1]{%
-  \begingroup
-  \setlength{\fboxsep}{3pt}%
-  \setlength{\fboxrule}{0pt}%
-  \makebox[30pt][c]{\fcolorbox{cyan!10}{cyan!10}{\makebox[24pt][c]{\textcolor{cyan!80}{\sffamily\tiny #1}}}}\hspace{4pt}%
-  \endgroup
+  \tcbox[
+    on line,
+    boxsep=1.2pt,
+    left=2pt,
+    right=2pt,
+    top=1pt,
+    bottom=1pt,
+    colback=cyan!12,
+    colframe=cyan!40,
+    arc=2pt,
+    boxrule=0.4pt
+  ]{\textcolor{cyan!80}{\sffamily\normalsize #1}}\hspace{4pt}%
 }
 
 % Avoid hyperref bookmark warnings when \schooltag appears in section titles.
