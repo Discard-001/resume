@@ -57,27 +57,28 @@
 }\vspace{-0.3em}
  
 \section{\faGraduationCap\ 教育背景}
-\datedsubsection{\textbf{哈尔滨工业大学} \quad 电子信息 \schooltag{985}\schooltag{211}\schooltag{双一流}}{2025 -- 至今}
-\datedsubsection{\textbf{郑州大学} \quad 物联网工程 \schooltag{211}\schooltag{双一流}}{2021 -- 2025}
+\datedsubsection{\textbf{哈尔滨工业大学} \quad 电子信息 （硕士在读）\schooltag{985}\schooltag{211}\schooltag{双一流}}{2025.09 -- 至今}
+\datedsubsection{\textbf{郑州大学} \quad 物联网工程 （本科） \schooltag{211}\schooltag{双一流}}{2021.09 -- 2025.06}
 \textit{英语：CET-6}\quad\textit{GPA：3.63/4.00}\quad\textit{专业排名: 24/143}
 
 \section{\faUsers\ 实习/项目经历}
-\datedsubsection{\textbf{MiniMind 大模型训练与推理实践}}{2024 -- 至今}
-\role{Python, PyTorch, Transformer, LoRA, 推理优化}{个人项目}
+\datedsubsection{\textbf{基于 Llama3 的轻量级大语言模型训练与对齐系统}}{2025.12 -- 2026.02}
+\role{Python, PyTorch, Transformer, LoRA, DPO/GRPO}{个人项目}
 \begin{itemize}
-  \item 基于 MiniMind 跑通从数据预处理、预训练/指令微调到推理部署的完整链路，形成可复用训练脚本与实验记录。
-  \item 在项目中实践 LoRA/全量微调与超参数对齐，围绕损失曲线、生成质量和稳定性进行对比，沉淀模型调参与问题定位方法。
-  \item 针对推理阶段进行性能优化（批处理、缓存与显存占用控制），提升本地实验效率，支撑多轮实验快速迭代。
-  \item 结合业务场景设计 Prompt 与评测样例，验证模型在问答、摘要、信息抽取等任务上的可用性，贴合 AI 技术应用岗落地需求。
+  \item \textbf{项目简介}：面向轻量级大语言模型训练场景，独立完成从模型搭建、预训练、指令微调到偏好对齐的完整实验流程，系统复现并实践小规模 LLM 训练与后训练核心方法。
+  \item \textbf{从 0 搭建轻量级大语言模型}：基于 Decoder-only 架构实现轻量模型，完成 RoPE 位置编码、KV Cache、GQA 注意力、RMSNorm 等核心模块开发，为后续训练与对齐提供统一模型底座。
+  \item \textbf{完成预训练与微调全流程}：基于 PyTorch 搭建预训练、SFT 和 LoRA 微调代码，支持混合精度、梯度累积；结合对话模板与 loss mask 设计，减少无效监督信号干扰，提升训练稳定性。
+  \item \textbf{实现模型后训练与偏好对齐}：基于偏好数据实现 DPO、GRPO 等后训练方法，结合规则奖励与推理格式约束，提升回答一致性与推理结果的格式稳定性。
 \end{itemize}
 
-\datedsubsection{\textbf{Claude Code Agent 应用开发实践}}{2025 -- 至今}
-\role{Agent, Function Calling, RAG, Prompt Engineering}{个人项目}
+\datedsubsection{\textbf{基于Nanobot的QQ智能个人助理}}{2026.02 -- 2026.04}
+\role{Python 3.12, HKUDS/nanobot, AI Agent, Tool Calling, MCP, asyncio}{独立研究 / 核心开发}
 \begin{itemize}
-  \item 复现并搭建 Agent 应用核心链路（任务拆解、工具调用、上下文管理、多轮对话），支持面向真实需求的端到端任务执行。
-  \item 基于文档检索与知识注入实现 RAG 能力，提升问答准确性与可解释性，并在不同提示词模板下对输出质量进行对比。
-  \item 围绕可用性与稳定性建立评测样例（正确性、完整性、格式约束、响应时延），形成可复用的应用评测流程。
-  \item 关注 AI 应用工程化落地，从需求定义、Prompt 设计、链路调试到结果验收完成闭环，匹配 AI 应用工程师岗位能力要求。
+  \item \textbf{项目简介}：为满足个人日程管理、消息提醒及文献处理等多样化需求，基于 Nanobot 框架进行源码级二次开发，构建了一个可长期运行、支持多任务切换以及具备长期记忆与角色成长性的 QQ 智能个人助理。
+  \item \textbf{三级记忆架构实现 Agent 成长性}:使用 MEMORY.md（长期注入 System Prompt）、HISTORY.md（按需检索）和 Session JSONL 三层体系，使 Agent 能从交互中持续学习用户偏好，越用越好用。
+  \item \textbf{多会话管理与上下文切换}: 针对原生 ReAct 上下文持续堆叠导致的注意力稀释与错误关联问题，实现了多会话隔离机制，为不同任务维护独立上下文，支持实时切换，保障 Agent 专注力。
+  \item \textbf{ReAct 链路优化与工具调用透明化: }打通\textbf{日程管理}（创建/查询/提醒）和文献检索工具链，并\textbf{实现实时工具调用通知}，将 Agent 的内隐思考外显化，让行为路径透明、可解释。
+  \item \textbf{RAG 增强的PDF问答}：接入 MinerU 实现论文 PDF 结构化解析（含公式等），结合向量检索（FAISS）构建知识库，完成“检索 → 解析 → 总结”端到端链路，解决长文档截断与幻觉问题。
 \end{itemize}
 
 % Reference Test
@@ -87,21 +88,24 @@
 %  \item main contribution
 %\end{itemize}
 
-\section{\faCogs\ IT 技能}
+\section{\faCogs\ 专业技能}
 \begin{itemize}[parsep=0.3ex, leftmargin=*]
-  \item \textbf{编程语言：}Python, C++, Java（具备工程编码与调试能力）
-  \item \textbf{AI 技术栈：}PyTorch, Transformer, LoRA/PEFT, RAG, Agent, Prompt Engineering
-  \item \textbf{工程与部署：}Linux, Git, Conda, API 集成与服务化部署（FastAPI 基础）
-  \item \textbf{模型应用：}文本生成/问答/信息抽取场景实践，具备评测与效果优化意识
+  \item \textbf{编程语言：}Python, C++, Java
+  \item \textbf{深度学习：}PyTorch, Transformer, LoRA/PEFT, 模型训练与对齐(DPO/GRPO）
+  \item \textbf{AI 应用：}RAG, Agent (ReAct), Prompt Engineering, MCP
+  \item \textbf{工程与部署：}Linux, Git, Conda, uv, FastAPI （基础）
+  
 \end{itemize}
 
 \section{\faHeartO\ 获奖情况}
 \datedline{全国大学生物联网设计竞赛（华为杯）西北赛区一等奖、全国总决赛三等奖}{2023}
-\datedline{郑州大学优秀学生奖学金二等奖（3 次）}{2022、2023、2024}
-\datedline{郑州大学 2022--2023 学年三好学生}{2023}
 \datedline{蓝桥杯全国软件和信息技术专业人才大赛河南赛区 C/C++ 程序设计大学 A 组二等奖}{2023}
-\datedline{网络技术挑战赛华中赛区三等奖}{2023、2024}
-\datedline{计算机软件著作权（2 篇）}{2024}
+% \datedline{网络技术挑战赛华中赛区三等奖}{2023、2024}
+\datedline{郑州大学优秀学生奖学金二等奖（3 次）}{2022、2023、2024}
+\datedline{计算机软件著作权 2 项}{2024}
+% \datedline{郑州大学 2022--2023 学年三好学生}{2023}
+
+
 
 %% Reference
 %\newpage
