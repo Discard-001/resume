@@ -35,6 +35,10 @@
   \def\quad{ }%
 }
 
+% 收紧 section 标题的上下间距（resume.cls 默认为 *1.8/*1.8），使全文控制在一页内。
+% *n 的单位为 1ex（titlesec 的 \beforetitleunit / \aftertitleunit）。
+\titlespacing*{\section}{0cm}{*1.2}{*1.0}
+
 \begin{document}
 \pagenumbering{gobble} % suppress displaying page number
 
@@ -63,14 +67,15 @@
 \textit{英语：CET-6}\quad\textit{GPA：3.63/4.00}\quad\textit{专业排名: 24/143}
 
 \section{\texorpdfstring{\faUsers\ 项目经历}{项目经历}}
-\datedsubsection{\textbf{基于Nanobot的多平台智能个人助理}}{2026.06 -- 2026.08}
+\datedsubsection{\textbf{基于Nanobot的多平台智能个人助理}\ \texorpdfstring{\href{https://github.com/Discard-001/nanobot-assistant}{\faGithub\ {\footnotesize github.com/Discard-001/nanobot-assistant}}}{}}{2026.06 -- 2026.08}
 \role{Python 3.12, HKUDS/nanobot, AI Agent, Tool Calling, MCP, asyncio}{独立研究 / 核心开发}
 \begin{itemize}
-  \item \textbf{项目简介}：为满足个人日程管理、消息提醒及文献处理等多样化需求，基于 Nanobot 框架进行源码级二次开发，构建了一个可长期运行、支持多任务切换以及具备长期记忆与角色成长性的 QQ以及飞书 智能个人助理。
-  \item \textbf{三级记忆架构实现 Agent 成长性}:使用 MEMORY.md（长期注入 System Prompt）、HISTORY.md（按需检索）和 Session JSONL 三层体系，使 Agent 能从交互中持续学习用户偏好，越用越好用。
-  \item \textbf{多会话管理与上下文切换}: 针对原生 ReAct 上下文持续堆叠导致的注意力稀释与错误关联问题，实现了多会话隔离机制，为不同任务维护独立上下文，支持实时切换，保障 Agent 专注力。
-  \item \textbf{ReAct 链路优化与工具调用透明化: }打通\textbf{日程管理}（创建/查询/提醒）和文献检索工具链，并\textbf{实现实时工具调用通知}，将 Agent 的内隐思考外显化，让行为路径透明、可解释。
-  \item \textbf{RAG 增强的PDF问答}：接入 MinerU 实现论文 PDF 结构化解析（含公式等），结合向量检索（FAISS）构建知识库，完成“检索 → 解析 → 总结”端到端链路，解决长文档截断与幻觉问题。
+  \item \textbf{项目简介}：为满足个人日程管理、消息提醒及文档处理等多样化需求，基于 Nanobot 项目进行源码级二次开发，构建具备长期记忆与多任务管理能力的 QQ / 飞书智能个人助理。
+  \item \textbf{三级记忆架构实现 Agent 成长性}:基于 MEMORY.md（长期注入 System Prompt）、HISTORY.md（按需检索）和 Session JSONL（会话持久化）三层结构，结合两阶段记忆固化机制，使 Agent 持续沉淀用户偏好与领域知识。
+  \item \textbf{多会话管理与上下文切换}: 针对 ReAct 长对话持续堆叠导致的注意力稀释与跨任务错误关联问题，实现多会话隔离机制与TTL压缩，为不同任务维护独立上下文，支持实时切换。
+  \item \textbf{工具链打通与执行过程透明化}: 打通日程管理（创建/查询/提醒）和文献检索工具链，基于飞书 CardKit 流式卡片与 QQ 流式消息 API，将思考链与工具调用按时间线交错实时外显，使 Agent 行为可解释、可追踪。
+  \item \textbf{RAG 增强的PDF问答}：接入 MinerU 实现论文 PDF 结构化解析（含公式等），结合 FAISS 向量库与 BGE-M3 嵌入 / 重排序模型，构建“解析 → 检索 → 生成”端到端链路，缓解长文档截断与幻觉问题。
+  \item \textbf{多模态输入输出扩展}：实现语音消息自动转写（ASR 失败自动兜底），集成图片 / 视频生成（OpenAI 兼容 API，异步任务轮询 + 限流重试，支持文生 / 图生视频），覆盖语音、图像、视频全链路。
 \end{itemize}
 
 \datedsubsection{\textbf{基于 Llama3 的轻量级大语言模型训练与对齐系统}}{2026.03 -- 2026.05}
@@ -82,14 +87,6 @@
   \item \textbf{实现模型后训练与偏好对齐}：基于偏好数据实现 DPO、GRPO 等后训练方法，结合规则奖励与推理格式约束，提升回答一致性与推理结果的格式稳定性。
 \end{itemize}
 
-
-
-% Reference Test
-%\datedsubsection{\textbf{Paper Title\cite{zaharia2012resilient}}}{May. 2015}
-%An xxx optimized for xxx\cite{verma2015large}
-%\begin{itemize}
-%  \item main contribution
-%\end{itemize}
 
 \section{\texorpdfstring{\faCogs\ 专业技能}{专业技能}}
 \begin{itemize}[parsep=0.3ex, leftmargin=*]
@@ -108,10 +105,4 @@
 \datedline{计算机软件著作权 2 项}{2024}
 % \datedline{郑州大学 2022--2023 学年三好学生}{2023}
 
-
-
-%% Reference
-%\newpage
-%\bibliographystyle{IEEETran}
-%\bibliography{mycite}
 \end{document}
