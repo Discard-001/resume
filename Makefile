@@ -1,25 +1,18 @@
-SRC = $(wildcard *.tex)
+.DEFAULT_GOAL := pdf
 
-PDFS = $(SRC:.tex=.pdf)
+.PHONY: all pdf zh_CN watch clean
 
-all:	clean pdf
+all: pdf
 
-en:	clean xelatex resume.tex
+# latexmk 自动检测正文、样式、图片等依赖，并按需重复编译。
+pdf:
+	latexmk -xelatex -interaction=nonstopmode -halt-on-error -outdir=build resume-zh_CN.tex
 
-zh_CN:	clean xelatex resume-zh_CN.tex
+zh_CN: pdf
 
-pdf:	clean $(PDFS)
+watch:
+	latexmk -xelatex -interaction=nonstopmode -halt-on-error -outdir=build -pvc resume-zh_CN.tex
 
-%.pdf:  %.tex
-	xelatex $<
-
-ifeq ($(OS),Windows_NT)
-  # on Windows
-  RM = cmd //C del
-else
-  # on Unix/Linux
-  RM = rm -f
-endif
-
+# 只清理编译目录，保留 releases 中的历史成品。
 clean:
-	$(RM) *.log *.aux *.bbl *.blg *.synctex.gz *.out *.toc *.lof *.idx *.ilg *.ind *.pdf
+	$(RM) -r build

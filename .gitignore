@@ -9,6 +9,14 @@
 /\!*
 .DS_Store
 *.pdf
+!releases/**/*.pdf
+
+# 编译和视觉检查产物
+/build/
+/tmp/
+
+# 完整源码备份体积较大，仅在本地保留；Git 通过标签保存同一版本。
+/releases/**/*.zip
 
 ############################################
 ## LATEX TEMPORARY FILES
